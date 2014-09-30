@@ -3,6 +3,7 @@ import commonTypes = require("./interfaces");
 
 export class Config {
   public Port: number = 1337;
+  public Host: string = '0.0.0.0';
   public Hooks: commonTypes.IHook[] = [];
 
   constructor() {

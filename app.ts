@@ -48,5 +48,5 @@ cfg.Hooks.forEach(hook => {
   })
 })
 
-app.listen(cfg.Port);
+app.listen(cfg.Port, cfg.Host);
 
