@@ -43,6 +43,8 @@ cfg.Hooks.forEach(hook => {
       var hookMessage: commonTypes.IDockerWebhookMessage = JSON.parse(req.body);
       hook.Callback(hookMessage);
     }
+
+    res.send('Hello');
   })
 })
 
