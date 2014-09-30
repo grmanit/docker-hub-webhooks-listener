@@ -8,11 +8,23 @@ var app = express();
 var spawn = childProcess.spawn;
 var cfg = new config.Config();
 
+function spawnAndLog(programName: string, programArgs: string[], onFinished: () => void) {
+  var program = spawn(programName, programArgs);
+  program.on('close', onFinished);
+
+  program.stdout.on('data', (data) => {
+    console.log('INFO:  ' + data);
+  });
+  program.stderr.on('data', (error) => {
+    console.error('ERROR: ' + error);
+  })
+}
+
 function restartContainer(restartConfig: commonTypes.IAutoRestartContainer) {
-  spawn('docker', ['pull', restartConfig.FullImageTagName]).on('close', () => {
-    spawn('docker', ['stop', restartConfig.ContainerName]).on('close', () => {
-      spawn('docker', ['rm', restartConfig.ContainerName]).on('close', () => {
-        spawn('docker', restartConfig.StartupContainerArguments);
+  spawnAndLog('docker', ['pull', restartConfig.FullImageTagName], () => {
+    spawnAndLog('docker', ['stop', restartConfig.ContainerName], () => {
+      spawnAndLog('docker', ['rm', restartConfig.ContainerName], () => {
+        spawnAndLog('docker', restartConfig.StartupContainerArguments, null);
       })
     })
   })
