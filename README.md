@@ -15,3 +15,12 @@ sample configuration. Afterwards run
     tsc --module commonjs app.ts
     
 to compile it to JavaScript.
+
+To Run the script
+================
+
+1. Install typescript: `npm install -g typescript`
+2. Update `config.ts` with your personal configuration of webhooks
+3. Compile the typescript files: `tsc --module commonjs app.ts`
+4. Install missing dependencies: `npm install`
+5. Run it: `node .`
