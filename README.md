@@ -24,3 +24,5 @@ To Run the script
 3. Compile the typescript files: `tsc --module commonjs app.ts`
 4. Install missing dependencies: `npm install`
 5. Run it: `node .`
+6. To start the script when your server starts, you can use something like 
+[https://github.com/chovy/node-startup](https://github.com/chovy/node-startup)
