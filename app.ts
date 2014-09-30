@@ -10,7 +10,10 @@ var cfg = new config.Config();
 
 function spawnAndLog(programName: string, programArgs: string[], onFinished: () => void) {
   var program = spawn(programName, programArgs);
-  program.on('close', onFinished);
+
+  if (onFinished) {
+    program.on('close', onFinished);
+  }
 
   program.stdout.on('data', (data) => {
     console.log('INFO:  ' + data);
