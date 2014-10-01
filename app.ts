@@ -34,7 +34,7 @@ function restartContainer(restartConfig: commonTypes.IAutoRestartContainer) {
 }
 
 cfg.Hooks.forEach(hook => {
-  app.get(hook.ListeningUrl, (req: express.Request, res: express.Response) => {
+  app.post(hook.ListeningUrl, (req: express.Request, res: express.Response) => {
     if (hook.AutoRestartContainers) {
       hook.AutoRestartContainers.forEach(restartContainer);
     }
